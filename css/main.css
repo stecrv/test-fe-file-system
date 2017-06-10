@@ -274,13 +274,25 @@ textarea {
 
 }
 .deep1{
-    margin-left: 10px;
-}
-.deep2{
     margin-left: 20px;
 }
+.deep2{
+    margin-left: 40px;
+}
 .deep3{
-    margin-left: 30px;
+    margin-left: 60px;
+}
+.deep4{
+    margin-left: 80px;
+}
+.deep5{
+    margin-left: 100px;
+}
+.deep6{
+    margin-left: 120px;
+}
+.deep7{
+    margin-left: 140px;
 }
 
 

@@ -11,12 +11,17 @@ var TreeTest = [
     {id: 9, name: 'bbb.jpg', type: 'file', parent: 2},
     {id: 10, name: 'bbbb.jpg', type: 'file', parent: 2},
     {id: 11, name: 'bbbbb.jpg', type: 'file', parent: 2},
+    {id: 12, name: 'd', type: 'folder', parent: 2},
+    {id: 13, name: 'ddddd.jpg', type: 'file', parent: 12},
+    {id: 14, name: 'dddd.jpg', type: 'file', parent: 12}
+
 ];
 
 
 var Tree = {
     el: 'tree',
     data: [], //contain three
+    branches: {},
     init: function (testData, opt) {
         if (testData) {
             this.data = testData;
@@ -35,6 +40,13 @@ var Tree = {
     _renderFile: function (el,deep) {
         return '<div class="file deep'+deep+'"  rel="' + el.id + '"><i class="icono-file"></i><div class="name">' + el.name + '</div></div>'
     },
+    _renderBranch: function(elements,deep){
+        var subdir = '';
+        for (var els in elements) {
+            subdir += this._renderEl(elements[els], (deep));
+        }
+        return subdir;
+    },
     _renderEl: function (el, deep) {
         var r = '';
         var subdir = '';
@@ -43,11 +55,13 @@ var Tree = {
         } else if (el.type == 'folder') {
             r = this._renderFolder(el, deep);
             if(el.subdir) {
-                for (var els in el.subdir) {
-                        subdir += this._renderEl(el.subdir[els], (deep +1 ));
-                }
-                r += subdir;
+                subdir += this._renderBranch(el.subdir, (deep +1 ));
+            }else if(this.branches && this.branches[el.id] ){
+                el.subdir= this.branches[el.id];
+                subdir += this._renderBranch(el.subdir, (deep +1 ));
+                //subdir += this._renderBranch(this.branches[el.id], (deep +1 ));
             }
+            r += subdir;
         }
         return r;
     },
@@ -71,9 +85,9 @@ var Tree = {
 
         }.bind(this));
 
-
+        this.branches = branches;
         for (var parentId in branches) {
-            fs[parentId].subdir = branches[parentId]
+            if(fs[parentId])  fs[parentId].subdir = branches[parentId]
         }
 
         for (var el in fs) {

@@ -1,3 +1,11 @@
+#How to run
+
+ - please download the project
+ - run a local web server (like `python -m SimpleHTTPServer`)
+ - open you brower at `http://localhost:8000/`
+
+#Instruction
+
  It is about replicating with html, css and javascript the functionality you can see in the attached picture. 
  You can find below a list of features you might want to implement. 
  See how far you can get within 2 hours.

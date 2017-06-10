@@ -266,8 +266,22 @@ textarea {
    Author's custom styles
    ========================================================================== */
 
+.name{
+    display: inline;
+    margin-left: 10px;
+}
+.deep0{
 
-
+}
+.deep1{
+    margin-left: 10px;
+}
+.deep2{
+    margin-left: 20px;
+}
+.deep3{
+    margin-left: 30px;
+}
 
 
 
